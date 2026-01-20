@@ -63,9 +63,27 @@ def main():
              tooltip=['Product:N', 'sum(quantity):Q']
           )
        )
-
-   
     st.altair_chart(bar_chart,use_container_width=True)
+
+ with a2:
+    st.subheader("Data Metrics", divider='rainbow')
+    from streamlit_extras.metric_cards import style_metric_cards
+    col1,col2=st.columns(2)
+    col1.metric(label="All number of Items", value=df1.Product.count(),delta="All Items in Dataset", delta_color="normal")
+    col2.metric(label="Sum of Product Price USD", value=f"{df1.TotalPrice.sum():,.0f}", delta=df1.TotalPrice.median())
+
+    col11,col12,col13 = st.columns(3)
+    col11.metric(label="Maximum Price", value=f"{df1.TotalPrice.max():,.0f}",delta="High Price")
+    col12.metric(label="Maximum Price", value=f"{df1.TotalPrice.min():,.0f}",delta="High Price")
+    col13.metric(label="Price Range", value=f"{df1.TotalPrice.max()-df1.TotalPrice.min():,.0f}",delta="Range")
+
+    # style the metric
+    style_metric_cards(background_color= "#FFF",
+    border_size_px = 1,
+    border_color = "#CCC",
+    border_radius_px = 5,
+    border_left_color  = "#9AD8E1",
+    box_shadow = True)
 
 
 
