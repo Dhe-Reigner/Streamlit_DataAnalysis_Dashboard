@@ -43,7 +43,29 @@ def main():
     filtered_data = dataframe_explorer(df1,case=False)
     st.dataframe(filtered_data,use_container_width=True)
 
+ # columns
+ a1, a2 = st.columns(2)
 
+ with a1:
+    st.subheader("Product & Quantities", divider='rainbow')
+    
+    if df1.empty:
+       st.warning('No data available for the selected date range')
+    else:
+       source = df1.rename(columns={'Quantity':'quantity'})
+
+       bar_chart = (
+          alt.Chart(source)
+          .mark_bar()
+          .encode(
+             x=alt.X('sum(quantity):Q', title='Total Quantity'),
+             y=alt.Y("Product:N", sort='-x'),
+             tooltip=['Product:N', 'sum(quantity):Q']
+          )
+       )
+
+   
+    st.altair_chart(bar_chart,use_container_width=True)
 
 
 
