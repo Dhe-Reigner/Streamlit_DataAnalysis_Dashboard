@@ -84,6 +84,38 @@ def main():
     border_radius_px = 5,
     border_left_color  = "#9AD8E1",
     box_shadow = True)
+ 
+ b1,b2 = st.columns(2)
+ # dot plot
+ with b1:
+    st.subheader("Products & Total Price",divider='rainbow')
+    source = df1
+    chart = alt.Chart(source).mark_circle().encode(
+       x = 'Product',
+       y = 'TotalPrice',
+       color = 'Category'
+    ).interactive()
+    st.altair_chart(chart,theme='streamlit',use_container_width=True)
+
+ with b2:
+    st.subheader("Product & UnitPrice", divider='rainbow')
+    
+    energy_source = pd.DataFrame({
+      'Product':df1['Product'],
+      'UnitPrice ($)': df1['UnitPrice'],
+      'Date': df1['OrderDate']
+    })
+
+    bar_chart = (
+      alt.Chart(energy_source)
+      .mark_bar()
+      .encode(
+          x='month(Date):O',
+          y='sum(UnitPrice ($)):Q',
+          color='Product:N'
+      )
+    )
+    st.altair_chart(bar_chart,use_container_width=True)
 
 
 
