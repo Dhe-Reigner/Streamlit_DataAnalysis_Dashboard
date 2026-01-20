@@ -1,14 +1,15 @@
 ---
-title: Streamlit Template Space
+title: Streamlit DataAnalysis Dashboard
 emoji: 🚀
 colorFrom: red
 colorTo: red
 sdk: docker
 app_port: 8501
 tags:
-  - streamlit
+- streamlit
 pinned: false
-short_description: Streamlit template space
+short_description: Streamlit_DataAnalysis_Dashboard
+license: mit
 ---
 
 # Welcome to Streamlit!
