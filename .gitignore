@@ -1,0 +1,10 @@
+# Data files
+src/data/*.jpg
+src/data/*.png
+src/data/*.csv
+
+# Python files
+*.pyc
+__pycache__
+
+.env
